@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KINGKING6677</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">KINGKING<span>6677</span></div>
+</header>
+
+<main class="app">
+
+  <!-- START SCREEN -->
+  <section id="screen-start" class="screen active">
+    <div class="card">
+      <h1 class="card-title">CAMERA &amp; PRIVACY</h1>
+      <p class="card-text">
+        你嘅鏡頭畫面只會<strong>喺瀏覽器本機處理</strong>（MediaPipe），
+        我哋唔會錄影、儲存或者上傳任何片段。畫面上顯示嘅係一隻跟住你郁嘅企鵝，唔會顯示你本人。
+      </p>
+      <div id="statusRow" class="status-row status-pending">
+        <span class="status-dot"></span>
+        <span id="statusText">按「開始遊戲」授權鏡頭</span>
+      </div>
+      <button id="btnStart" class="btn btn-primary">開始遊戲</button>
+      <p class="card-hint">企鵝會鏡像跟住你嘅上半身同雙手郁，請企遠少少令全個上半身入鏡。</p>
+    </div>
+    <p class="meta-row">
+      <span>⏱ 每回合 20 秒</span>
+      <span>🔁 免費，無需註冊</span>
+    </p>
+  </section>
+
+  <!-- CAMERA ERROR OVERLAY -->
+  <section id="screen-error" class="screen">
+    <div class="card">
+      <div class="error-icon">🎥</div>
+      <h1 class="card-title error-title">CAMERA ACCESS NEEDED</h1>
+      <p class="card-text">
+        我哋讀取唔到你嘅鏡頭。請喺瀏覽器度俾返鏡頭權限呢個網站，然後再試一次。你嘅畫面只會本機處理，唔會上傳。
+      </p>
+      <button id="btnRetry" class="btn btn-primary">再試一次</button>
+      <button id="btnErrorClose" class="btn btn-ghost">關閉</button>
+    </div>
+  </section>
+
+  <!-- PLAYING SCREEN -->
+  <section id="screen-play" class="screen">
+    <div class="play-frame">
+      <div class="hud hud-left"><span id="hudTimer">20.0</span></div>
+      <div class="hud hud-right"><span id="hudTotal">0</span></div>
+      <button id="btnMute" class="btn-mute" title="開/關聲音">🔊</button>
+
+      <div id="countdown" class="countdown"></div>
+
+      <div id="avatarStage" class="avatar-stage">
+        <img id="partBody" class="avatar-part avatar-body" alt="">
+        <img id="partLeftWing" class="avatar-part avatar-wing" alt="">
+        <img id="partRightWing" class="avatar-part avatar-wing" alt="">
+        <div id="headGroup" class="avatar-part avatar-head-group">
+          <img id="partHead" class="head-img" alt="">
+          <canvas id="leftEyeCanvas" class="eye-canvas" width="220" height="220"></canvas>
+          <canvas id="rightEyeCanvas" class="eye-canvas" width="220" height="220"></canvas>
+        </div>
+      </div>
+
+      <div class="lr-row">
+        <div class="lr-box"><span class="lr-label">L</span><span id="lrLeft">0</span></div>
+        <div class="lr-box"><span class="lr-label">R</span><span id="lrRight">0</span></div>
+      </div>
+
+      <button id="btnQuit" class="btn-quit">QUIT</button>
+
+      <!-- DEBUG PANEL -->
+      <div id="debugPanel" class="debug-panel">
+        <div class="debug-head">
+          <span>DEBUG</span>
+          <button id="btnDebugToggle" class="debug-toggle" title="開/關 debug 面板">👁</button>
+        </div>
+        <div class="debug-body">
+          <canvas id="debugCanvas" width="160" height="120"></canvas>
+          <div id="debugText" class="debug-text"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS SCREEN -->
+  <section id="screen-results" class="screen">
+    <div class="card">
+      <h1 class="card-title">RUN COMPLETE</h1>
+      <div class="result-total" id="resultTotal">0</div>
+      <div class="result-sub">reps in 20 seconds</div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-label">PEAK RPS</div>
+          <div class="stat-value" id="statPeak">0.0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">AVG RPS</div>
+          <div class="stat-value" id="statAvg">0.0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">BEST (LOCAL)</div>
+          <div class="stat-value" id="statBest">0</div>
+        </div>
+      </div>
+
+      <p class="result-message" id="resultMessage"></p>
+
+      <button id="btnPlayAgain" class="btn btn-primary">再玩一次</button>
+      <button id="btnShare" class="btn btn-ghost">分享分數</button>
+    </div>
+  </section>
+
+</main>
+
+<video id="camVideo" playsinline muted style="display:none;"></video>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
