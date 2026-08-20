@@ -109,7 +109,11 @@ export class Game {
 
       const nowSec = performance.now() / 1000;
       if (this.roundState === "playing") this._trackReps(this.lastHands, nowSec);
-      this.avatar.update(this.counter.state);
+      // The penguin faces the player (like looking at someone, not a mirror),
+      // so the player's real right hand should drive the penguin's screen-left
+      // wing — swap sides here, at the single boundary between tracked hand
+      // identity and on-screen display, rather than inside avatar.js.
+      this.avatar.update({ left: this.counter.state.right, right: this.counter.state.left });
       if (this.lastFace) {
         const ringPoints = (indices) => indices.map((i) => this.lastFace[i]);
         this.avatar.updateEyes(
