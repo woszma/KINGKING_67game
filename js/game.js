@@ -245,16 +245,5 @@ export class Game {
     drawHand(hands.left, "#e63946");
     drawHand(hands.right, "#2a6fdb");
 
-    if (!hands.left && !hands.right) {
-      this.dom.debugText.textContent = "no hand detected";
-      return;
-    }
-
-    const fmt = (v) => (v ?? 0).toFixed(2);
-    const lt = this.counter.thresholds.left;
-    this.dom.debugText.textContent =
-      `L wrist.y=${hands.left ? fmt(hands.left[HAND_LM.WRIST].y) : "-"} vel=${fmt(this.counter.velocity.left)} [${this.counter.state.left}]\n` +
-      `R wrist.y=${hands.right ? fmt(hands.right[HAND_LM.WRIST].y) : "-"} vel=${fmt(this.counter.velocity.right)} [${this.counter.state.right}]\n` +
-      `L thresholds rise=${lt.rise.toFixed(2)} fall=${lt.fall.toFixed(2)}`;
   }
 }

@@ -299,6 +299,7 @@ html, body {
   background: #000;
 }
 .debug-text {
+  display: none;
   margin-top: 4px;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
   font-size: 9.5px;
