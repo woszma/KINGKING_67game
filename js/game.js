@@ -5,7 +5,7 @@ import { PenguinAvatar } from "./avatar.js";
 import { RepCounter } from "./repCounter.js";
 import { AudioEngine } from "./audio.js";
 
-const ROUND_SECONDS = 20;
+const ROUND_SECONDS = 30;
 
 // Simplified MediaPipe hand connections (skips a couple of palm cross-links)
 // — enough to read as a hand skeleton in the small debug preview.
